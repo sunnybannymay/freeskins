@@ -76,22 +76,48 @@ $(document).ready(function () {
     ];
     $(function () {
         for (i = 0; i < items.length; i++) {
-            var myCol = $('<div class="col-sm-3 col-md-3"></div>');
+            var btn_copy="";
+            // var btn_copy='<input type="button" id="copytext_' + i +
+            //     '" value="Copy" ' +
+            //     'class="btn btn-info align-self-auto">';
+
+            var myCol = $('<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-4"></div>');
+
             var myPanel = '<div class="card">' +
                 '<div class="card-block">' +
                 '<h4 class="card-title">';
-            myPanel += '<a class="btn btn-warning mt-5" href="';
+            myPanel += '<a id="btn_link" class="btn btn-warning text-white mt-3" ' +
+                'target="_blank" ' +
+                'href="';
             myPanel += items[i].link + '">' + items[i].name + '</a>' +
                 '</h4>' +
-                '<div class="card-body text-dark">';
-            myPanel += 'CODE:' + items[i].code +
-                '<p>FREE:' + items[i].free + '</p>' +
+                '<div class="card-body">';
+            myPanel += '<div class="card-text" id="copytext_' + i +
+                '" data-clipboard-target="#copytext_' + i +
+                '">' + items[i].code +
+                '</div><p style="{font-weight: bold}">FREE:</p>' + items[i].free +
                 '</div>' +
                 '</div>';
             myCol.html(myPanel);
             myCol.appendTo('#contentPanel');
         }
+        $('.card').click(
+            function () {
+                $(this).css({"background-color": "rgb(255, 165, 166)"});
+                console.log('3');
+            });
+        // $('.card-text').hover(
+        //     function () {
+        //         $(this).css({"border-width": "10px"})
+        //     },
+        //     function () {
+        //         $(this).css({"border-width": "5px"})
+        //     }
+        // )
+        //     .on('click', function () {
+        //             new Clipboard(this);
+        //         }
+        //     );
         return false;
-    });
-
+    })
 });
